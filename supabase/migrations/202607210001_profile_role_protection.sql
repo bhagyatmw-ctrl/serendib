@@ -1,0 +1,2 @@
+create or replace function public.protect_profile_role() returns trigger language plpgsql security definer set search_path = '' as $$ begin if new.role is distinct from old.role and not public.is_content_manager() then raise exception 'Only content managers may change profile roles'; end if; return new; end; $$;
+create trigger profiles_protect_role before update on public.profiles for each row execute function public.protect_profile_role();
