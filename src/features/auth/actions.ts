@@ -11,11 +11,11 @@ export async function signIn(_: AuthState, formData: FormData): Promise<AuthStat
 export async function signUp(_: AuthState, formData: FormData): Promise<AuthState> {
   const supabase = await createClient(); const { email, password } = credentials(formData); const displayName = String(formData.get("displayName") ?? "").trim();
   if (!displayName) return { error: "Please enter your name." }; if (!email || password.length < 8) return { error: "Enter a valid email and a password of at least 8 characters." };
-  const { error, data } = await supabase.auth.signUp({ email, password, options: { data: { full_name: displayName }, emailRedirectTo: `${process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3001"}/auth/callback` } });
+  const { error, data } = await supabase.auth.signUp({ email, password, options: { data: { full_name: displayName }, emailRedirectTo: `${process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3002"}/auth/callback` } });
   if (error) return { error: error.message }; if (data.session) redirect("/account"); return { success: "Check your email to confirm your account, then sign in." };
 }
 export async function signInWithGoogle() {
-  const supabase = await createClient(); const { data, error } = await supabase.auth.signInWithOAuth({ provider: "google", options: { redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3001"}/auth/callback` } });
+  const supabase = await createClient(); const { data, error } = await supabase.auth.signInWithOAuth({ provider: "google", options: { redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3002"}/auth/callback` } });
   if (error) redirect(`/auth/login?error=${encodeURIComponent(error.message)}`); if (data.url) redirect(data.url);
 }
 export async function signOut() { const supabase = await createClient(); await supabase.auth.signOut(); redirect("/"); }

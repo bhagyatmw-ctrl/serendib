@@ -1,8 +1,13 @@
 node_modules
+.npm-cache
 .next
 .next-verify
+.next-*/
 .env
 .env.local
 *.log
 *.tsbuildinfo
 .vercel
+
+# Unrelated local utilities copied into the repository folder
+/apps-script-linke-fetcher*/

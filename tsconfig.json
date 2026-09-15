@@ -31,9 +31,12 @@
   "include": [
     "**/*.ts",
     "**/*.tsx",
+    ".next-release-audit/types/**/*.ts",
+    ".next-release-seo/types/**/*.ts",
+    ".next-verify/types/**/*.ts",
     ".next/types/**/*.ts",
     "next-env.d.ts",
-    ".next-verify/types/**/*.ts"
+    ".next-clone-verify/types/**/*.ts"
   ],
   "exclude": [
     "node_modules"

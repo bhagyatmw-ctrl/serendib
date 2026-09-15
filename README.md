@@ -1,15 +1,15 @@
 # Serendib — Sri Lanka Travel Companion
 
-A deployment-ready foundation for the travel platform described in the project SRS. The first slice is a responsive, media-led discovery and trip-planning homepage.
+Serendib is an interactive Sri Lanka travel hub for discovering destinations, planning personalized journeys, estimating costs, checking live travel information, saving favorites, and sharing useful reviews.
 
 ## Run locally
 
 ```bash
-pnpm install
-pnpm dev
+npm install
+npm run dev
 ```
 
-Open `http://localhost:3000`.
+Open `http://localhost:3002`.
 
 ## Environment
 
@@ -17,13 +17,18 @@ Copy `.env.example` to `.env.local` and add Supabase credentials when the data l
 
 The initial schema, row-level security policies, media bucket, and seed destinations live in `supabase/`. See `docs/architecture.md` for the data model and development workflow.
 
-## Delivery roadmap
+## Available product areas
 
-1. Foundation: design system, navigation, Supabase schema, auth, destination CMS.
-2. Planning: itinerary builder, cost model, saved trips, PDF export.
-3. Discovery: searchable destinations, Leaflet maps, stays, food, guides, transport, activities.
-4. Live services: Open-Meteo weather, currency conversion, favorites, reviews, stories, galleries.
-5. Operations: admin workflows, analytics, moderation, accessibility, SEO, testing, production deployment.
+- Responsive destination discovery with search and interest filters
+- Detailed destination pages with weather, stays, food, experiences, and transport guidance
+- Personalized day-by-day itinerary builder with editable activities and cost estimates
+- Supabase authentication, traveler profiles, saved journeys, favorites, and reviews
+- Editorial Sri Lanka travel stories
+- Live currency and weather integrations, packing checklist, and emergency contacts
+
+## Remaining delivery work
+
+See [`docs/completion-audit.md`](docs/completion-audit.md) for the prioritized release checklist. The major remaining areas are a global places directory and map, admin content workflows, itinerary export, broader automated testing, licensed local media, and production deployment.
 
 ## Media policy
 

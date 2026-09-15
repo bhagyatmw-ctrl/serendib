@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowRight, CalendarDays, Compass, Map, Play, Sparkles, WalletCards } from "lucide-react";
 import { isSupabaseConfigured } from "@/src/lib/env";
 import { createClient } from "@/src/lib/supabase/server";
+import { BrandLogo } from "@/src/components/brand-logo";
 
 export const dynamic = "force-dynamic";
 
@@ -96,8 +97,8 @@ export default async function Home() {
         </video>
         <div className="heroShade" />
         <nav className="nav shell" aria-label="Main navigation">
-          <Link className="brand" href="/" aria-label="Serendib home"><span className="brandMark">S</span><span>serendib</span></Link>
-          <div className="navLinks"><Link href="/destinations">Discover</Link><Link href="#plan">Plan a trip</Link><Link href="#stories">Stories</Link><Link href="#about">About</Link></div>
+          <Link className="brand" href="/" aria-label="Serendib home"><BrandLogo/></Link>
+          <div className="navLinks"><Link href="/destinations">Discover</Link><Link href="#plan">Plan a trip</Link><Link href="/stories">Stories</Link><Link href="/travel-tools">Travel tools</Link></div>
           <Link className="navCta" href={user ? "/account" : "/auth/login"}>{user ? "My account" : "Sign in"} <ArrowRight size={16} /></Link>
         </nav>
 
@@ -134,11 +135,11 @@ export default async function Home() {
       <section className="planner" id="plan">
         <div className="shell plannerInner">
           <div><p className="sectionLabel light">Your journey, your rhythm</p><h2>A better trip starts<br />with a better plan.</h2></div>
-          <form className="plannerForm">
-            <label><span><CalendarDays size={16} /> Length</span><select defaultValue="7"><option value="5">5 days</option><option value="7">7 days</option><option value="10">10 days</option><option value="14">14 days</option></select></label>
-            <label><span><WalletCards size={16} /> Travel style</span><select defaultValue="comfort"><option value="budget">Budget</option><option value="comfort">Comfort</option><option value="luxury">Luxury</option></select></label>
-            <label><span><Compass size={16} /> Most interested in</span><select defaultValue="mix"><option value="mix">A little of everything</option><option value="culture">Culture & history</option><option value="nature">Nature & wildlife</option><option value="coast">Beaches & surf</option></select></label>
-            <button type="button">Create my itinerary <Sparkles size={17} /></button>
+          <form className="plannerForm" action="/planner">
+            <label><span><CalendarDays size={16} /> Length</span><select name="days" defaultValue="7"><option value="5">5 days</option><option value="7">7 days</option><option value="10">10 days</option><option value="14">14 days</option></select></label>
+            <label><span><WalletCards size={16} /> Travel style</span><select name="style" defaultValue="comfort"><option value="budget">Budget</option><option value="comfort">Comfort</option><option value="luxury">Luxury</option></select></label>
+            <label><span><Compass size={16} /> Most interested in</span><select name="interest" defaultValue="mix"><option value="mix">A little of everything</option><option value="heritage">Cultural heritage</option><option value="buddhist">Buddhist heritage</option><option value="nature">Nature & wildlife</option><option value="hills">Hill country & tea</option><option value="coast">Beaches & surf</option></select></label>
+            <button type="submit">Create my itinerary <Sparkles size={17} /></button>
           </form>
         </div>
       </section>
@@ -147,7 +148,7 @@ export default async function Home() {
         {features.map(({ icon: Icon, title, text }) => <article key={title}><Icon size={24} /><h3>{title}</h3><p>{text}</p></article>)}
       </section>
 
-      <footer><div className="shell"><Link className="brand dark" href="/"><span className="brandMark">S</span><span>serendib</span></Link><p>Your thoughtful companion for exploring Sri Lanka.</p><span>© 2026 Serendib</span></div></footer>
+      <footer><div className="shell"><Link className="brand dark" href="/"><BrandLogo/></Link><p>Your thoughtful companion for exploring Sri Lanka.</p><span>© 2026 Serendib</span></div></footer>
     </main>
   );
 }
